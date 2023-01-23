@@ -128,6 +128,7 @@ if (localStorage.getItem("post")) {
 //  Edit. Find dataset btn and next find items which need to edit
 window.addEventListener("click", (event) => {
   if (event.target.dataset.action === "edit") {
+    // find post
     const post = event.target.closest(".post");
     const header = post.querySelector(".header");
     const main = post.querySelector(".main");
@@ -136,40 +137,45 @@ window.addEventListener("click", (event) => {
     const btnEdit = post.querySelector(".edit");
     const timeEdit = post.querySelector(".time");
     const editTimeText = post.querySelector(".editTimeText");
+    // Look. first btn
     if (btnEdit.textContent === "Смотреть") {
       main.classList.remove("hidden");
       btnEdit.textContent = "Редактировать";
+      // Edit. second btn
     } else if (btnEdit.textContent === "Редактировать") {
       title.classList.add("hidden");
       text.classList.add("hidden");
-
+      // styles
       inputEditTitle.classList.add("inputEditTitle");
       textareaEditText.classList.add("textareaEditText");
-
+      // type input & textarea
       inputEditTitle.type = "text";
       textareaEditText.type = "text";
-
+      // value
       inputEditTitle.value = title.textContent;
       textareaEditText.value = text.textContent;
-
+      // add
       header.appendChild(inputEditTitle);
       main.appendChild(textareaEditText);
-
+      // btn name
       btnEdit.textContent = "Сохранить";
+      // Save. third btn
     } else {
+      // clear, what was before
       header.innerHTML = "";
       main.innerHTML = "";
-
+      // new text
       title.textContent = inputEditTitle.value;
       text.textContent = textareaEditText.value;
-
+      // save in HTML
       header.appendChild(title);
       main.appendChild(text);
+      // styles
       title.classList.add("title");
       title.classList.remove("hidden");
       text.classList.add("text");
       text.classList.remove("hidden");
-
+      // time update
       editTimeText.classList.remove("hidden");
 
       let date = new Date();
@@ -188,9 +194,9 @@ window.addEventListener("click", (event) => {
         ":" +
         minutes +
         " ";
-
+      // btn name
       btnEdit.textContent = "Редактировать";
-
+      // update localStorage
       posts();
     }
   }
