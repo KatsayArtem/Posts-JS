@@ -1,4 +1,4 @@
-const posts = document.getElementById("main");
+const mainPosts = document.getElementById("main");
 const input = document.getElementById("input");
 const textarea = document.getElementById("textarea");
 const btn = document.getElementById("createPost");
@@ -85,7 +85,7 @@ btn.onclick = (evt) => {
     let timeEdit = document.createElement("h3");
     timeEdit.classList.add("time");
     blockEdit.appendChild(timeEdit);
-
+    // footer
     let footer = document.createElement("div");
     footer.classList.add("footer");
 
@@ -105,24 +105,24 @@ btn.onclick = (evt) => {
     newPost.appendChild(main);
     newPost.appendChild(footer);
     // main post
-    posts.append(newPost);
+    mainPosts.append(newPost);
     // clear
     input.value = "";
     textarea.value = "";
-    todos();
+    posts();
   }
 };
 
 // LocalStorage. Save data
-let todo;
-function todos() {
-  todo = main.innerHTML;
-  localStorage.setItem("todo", todo);
+let post;
+function posts() {
+  post = main.innerHTML;
+  localStorage.setItem("post", post);
 }
 
 // LocalStorage. Use data
-if (localStorage.getItem("todo")) {
-  main.innerHTML = localStorage.getItem("todo");
+if (localStorage.getItem("post")) {
+  main.innerHTML = localStorage.getItem("post");
 }
 
 //  Edit. Find dataset btn and next find items which need to edit
@@ -191,7 +191,7 @@ window.addEventListener("click", (event) => {
 
       btnEdit.textContent = "Редактировать";
 
-      todos();
+      posts();
     }
   }
 });
